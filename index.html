@@ -9,7 +9,7 @@
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="index-page">
     <!-- 애드센스 광고 단위 -->
     <!-- TODO: data-ad-slot 값을 실제 광고 단위 ID로 교체해주세요. -->
     <ins class="adsbygoogle"
@@ -22,6 +22,21 @@
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
     <!-- //애드센스 광고 단위 -->
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">냠냠쩝쩝</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="menu.html">전체 메뉴</a></li>
+                    <li><a href="about.html">소개</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <div class="theme-toggle-container">
         <button id="theme-toggle">🌙</button>
@@ -42,13 +57,19 @@
             <h2 id="result-menu"></h2>
             <a id="youtube-link" href="#" target="_blank">📺 레시피 영상 보러가기</a>
         </div>
+    </div>
 
-        <div class="affiliate-link-container">
-            <a href="affiliate-inquiry-form.html">제휴 문의</a>
+    <div class="container" id="menu-list-container">
+        <h2>전체 메뉴 둘러보기</h2>
+        <p>룰렛을 돌리지 않고 다양한 메뉴를 직접 탐색해보세요.</p>
+        <div class="menu-grid">
+            <!-- 메뉴 카드는 menu.js로 동적 생성됩니다. -->
         </div>
+        <a href="menu.html" class="button-link">모든 메뉴 보기</a>
     </div>
 
     <script src="main.js" defer></script>
+    <script src="menu.js" defer></script>
 
     <div class="disqus-container">
         <div id="disqus_thread"></div>
@@ -69,5 +90,17 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 냠냠쩝쩝. All Rights Reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="privacy.html">개인정보처리방침</a></li>
+                    <li><a href="affiliate-inquiry-form.html">제휴 문의</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
 </body>
 </html>
