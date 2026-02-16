@@ -1,7 +1,10 @@
 const menuButton = document.getElementById('menu-button');
-const menuDisplay = document.getElementById('menu-display');
 const themeToggleButton = document.getElementById('theme-toggle');
 const body = document.body;
+const roulette = document.getElementById('roulette');
+const resultContainer = document.getElementById('result-container');
+const resultMenu = document.getElementById('result-menu');
+const youtubeLink = document.getElementById('youtube-link');
 
 const menuItems = [
     "된장찌개", "김치찌개", "순두부찌개", "육개장", "갈비탕",
@@ -26,24 +29,67 @@ const menuItems = [
     "멸치볶음", "장조림", "깍두기", "오이소박이", "계란말이"
 ];
 
+function populateRoulette() {
+    roulette.innerHTML = '';
+    const repeatedItems = [...menuItems, ...menuItems, ...menuItems, ...menuItems, ...menuItems]; // Repeat for a long list
+    repeatedItems.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('roulette-item');
+        div.textContent = item;
+        roulette.appendChild(div);
+    });
+}
+
 menuButton.addEventListener('click', () => {
+    resultContainer.classList.add('hidden');
+    menuButton.disabled = true;
+
+    const totalItems = roulette.children.length;
+    const itemHeight = 50;
     const randomIndex = Math.floor(Math.random() * menuItems.length);
-    const randomMenu = menuItems[randomIndex];
-    menuDisplay.innerHTML = `<p>${randomMenu}</p>`;
+    
+    // Position the final item somewhere in the latter part of the list for a better spin effect
+    const finalPositionIndex = menuItems.length * 3 + randomIndex;
+    const finalPosition = finalPositionIndex * itemHeight;
+
+    const spinDuration = 4000; // 4 seconds
+
+    roulette.style.transition = `top ${spinDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
+    roulette.style.top = `-${finalPosition}px`;
+
+    setTimeout(() => {
+        const selectedMenu = menuItems[randomIndex];
+        resultMenu.textContent = selectedMenu;
+        youtubeLink.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(selectedMenu + ' 레시피')}`;
+        resultContainer.classList.remove('hidden');
+        menuButton.disabled = false;
+        
+        // Reset roulette for the next spin without animation
+        roulette.style.transition = 'none';
+        const resetIndex = menuItems.length + randomIndex;
+        roulette.style.top = `-${resetIndex * itemHeight}px`;
+
+    }, spinDuration);
 });
 
 themeToggleButton.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
+        themeToggleButton.textContent = '☀️';
     } else {
         localStorage.setItem('theme', 'light');
+        themeToggleButton.textContent = '🌙';
     }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    populateRoulette();
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
+        themeToggleButton.textContent = '☀️';
+    } else {
+        themeToggleButton.textContent = '🌙';
     }
 });
