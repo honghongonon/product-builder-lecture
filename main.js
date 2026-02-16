@@ -1,5 +1,7 @@
 const menuButton = document.getElementById('menu-button');
 const menuDisplay = document.getElementById('menu-display');
+const themeToggleButton = document.getElementById('theme-toggle');
+const body = document.body;
 
 const menuItems = [
     "된장찌개", "김치찌개", "순두부찌개", "육개장", "갈비탕",
@@ -28,4 +30,20 @@ menuButton.addEventListener('click', () => {
     const randomIndex = Math.floor(Math.random() * menuItems.length);
     const randomMenu = menuItems[randomIndex];
     menuDisplay.innerHTML = `<p>${randomMenu}</p>`;
+});
+
+themeToggleButton.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
 });
