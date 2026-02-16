@@ -14,14 +14,17 @@
 
 body {
     font-family: 'Jua', sans-serif;
+    /* Changed to column layout to stack containers */
     display: flex;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 20px 0; /* Add some padding for spacing */
     background-color: var(--bg-color);
     transition: background-color 0.3s, color 0.3s;
-    overflow: hidden; /* 스크롤 방지 */
+    overflow-x: hidden; /* Allow vertical scroll */
 }
 
 .container {
@@ -34,6 +37,17 @@ body {
     max-width: 500px;
     position: relative;
     z-index: 10;
+}
+
+/* New Disqus Container Styles */
+.disqus-container {
+    background-color: var(--container-color);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px; /* Same as main container */
+    margin-top: 20px; /* Space between containers */
 }
 
 h1 {
