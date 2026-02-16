@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제휴 문의</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>제휴 문의</h1>
+        <p>아래 양식을 작성하여 제휴 문의를 보내주세요.</p>
+
+        <form action="https://formspree.io/f/xojnwveq" method="POST">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="_replyto" required>
+
+            <label for="message">문의 내용:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">문의하기</button>
+        </form>
+    </div>
+</body>
+</html>
